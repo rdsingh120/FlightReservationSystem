@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <div class="h-[80px] w-full bg-blue-500 flex justify-between items-center px-5 lg:ps-20 lg:pe-49">
+      <h1 class="text-xl md:text-2xl lg:text-4xl text-white">Air Atlantic</h1>
+      <div class="flex justify-evenly gap-8 lg:gap-15">
+        <a href="/" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Home</a>
+        <a href="/sign-up" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Sign Up</a>
+        <a href="/sign-in" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Sign In</a>
+      </div>
+    </div>
+    <div class="bg-[#000000ab] bg-[url('../images/sign-up-bg.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-10">
+      <form id="sign-up-form" class="max-w-[600px] mx-2 sm:mx-auto p-5 rounded-lg bg-white">
+        <div class="flex flex-col items-center gap-1 mt-6 mb-3 px-5">
+          <h1 class="text-4xl mb-3">Sign Up</h1>
+          <h3 class="text-lg">Complete the form to register</h3>
+        </div>
+        <div class="flex flex-col gap-1 mb-3 px-5">
+          <label for="name" class="text-lg">Name</label>
+          <input name="name" type="text" class="p-2 text-lg rounded-lg border" id="name" />
+          <span id="name-error" class="text-sm text-red-500 hidden"></span>
+        </div>
+        <div class="flex flex-col gap-1 mb-3 px-5">
+          <label for="email" class="text-lg">Email address</label>
+          <input name="email" type="email" class="p-2 text-lg rounded-lg border" id="email" />
+          <span id="email-error" class="text-sm text-red-500 hidden"></span>
+        </div>
+        <div class="flex flex-col gap-1 mb-3 px-5">
+          <label for="password" class="text-lg">Password</label>
+          <input name="password" type="password" class="p-2 text-lg rounded-lg border" id="password" />
+          <span id="password-error" class="text-sm text-red-500 hidden"></span>
+        </div>
+        <div class="flex flex-col gap-1 mb-6 px-5">
+          <label for="confirm-password" class="text-lg">Confirm password</label>
+          <input name="confirm-password" type="password" class="p-2 text-lg rounded-lg border" id="confirm-password" />
+          <span id="confirm-password-error" class="text-sm text-red-500 hidden"></span>
+        </div>
+        <div class="flex flex-col mb-6 gap-1 px-5">
+          <button
+            type="submit"
+            id="sign-up-btn"
+            class="p-2 text-lg rounded-lg border bg-blue-500 text-white font-medium cursor-pointer"
+          >
+            Sign Up
+          </button>
+          <p class="text-center mt-2">
+            Already have an account?
+            <a href="/sign-in" class="text-blue-500 hover:underline"> Sign In </a>
+          </p>
+        </div>
+      </form>
+    </div>
+    <script src="../js/sign-up.js"></script>
+  </body>
+</html>
