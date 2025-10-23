@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="h-[80px] w-full bg-blue-500 flex justify-between items-center px-5 lg:ps-20 lg:pe-49">
+      <h1 class="text-xl md:text-2xl lg:text-4xl text-white">Air Atlantic</h1>
+      <div class="flex justify-evenly gap-8 lg:gap-15">
+        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Profile</a>
+        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Reservations</a>
+      </div>
+    </div>
+
+    <section class="bg-[#000000ab] bg-[url('hero.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-5">
+      <form id="reservation-form" class="w-full rounded-xl p-5 p-10 max-w-[700px] mx-auto bg-white" action="">
+        <!-- Fight Details Section -->
+
+        <div class="mb-5">
+          <h1 class="text-4xl mb-3 font-semibold tracking-wide text-center">Book a flight</h1>
+          <h3 class="text-lg tracking-wide text-center">Please fill the form to book.</h3>
+        </div>
+
+        <!-- Trip Type -->
+
+        <div class="mb-5">
+          <h1 class="mb-2 text-lg font-medium traking-wide">Trip Type</h1>
+          <div class="flex flex-col md:flex-row">
+            <span class="w-full">
+              <input type="radio" name="tripType" id="roundTrip" value="Round Trip" />
+              <label class="text-lg" for="roundTrip"> Round Trip </label>
+            </span>
+            <span class="w-full">
+              <input type="radio" name="tripType" id="oneWayTrip" value="One Way Trip" />
+              <label class="text-lg" for="oneWayTrip"> One Way Trip </label>
+            </span>
+          </div>
+          <span id="tripTypeError" class="text-sm text-red-500 hidden"></span>
+        </div>
+
+        <!-- From and To -->
+
+        <div class="flex flex-col sm:flex-row gap-2 mb-5">
+          <span class="flex flex-col w-full">
+            <label class="mb-2 text-lg font-medium traking-wide" for="origin">From</label>
+            <select id="departureCity" class="w-full p-2 text-lg rounded-lg border">
+              <option value="" selected disabled hidden>Please Select</option>
+              <option value="Toronto">Toronto</option>
+              <option value="Paris">Paris</option>
+              <option value="New York">New York</option>
+              <option value="London">London</option>
+              <option value="Amsterdam">Amsterdam</option>
+            </select>
+            <span id="departureCityError" class="text-sm text-red-500 hidden"></span>
+            <span class="sameCityError text-sm text-red-500 hidden"></span>
+          </span>
+          <span class="flex flex-col w-full">
+            <label class="mb-2 text-lg font-medium traking-wide" for="">To</label>
+            <select id="arrivalCity" class="w-full p-2 text-lg rounded-lg border">
+              <option value="" selected hidden>Please Select</option>
+              <option value="Toronto">Toronto</option>
+              <option value="Paris">Paris</option>
+              <option value="New York">New York</option>
+              <option value="London">London</option>
+              <option value="Amsterdam">Amsterdam</option>
+            </select>
+            <span id="arrivalCityError" class="text-sm text-red-500 hidden"></span>
+            <span class="sameCityError text-sm text-red-500 hidden"></span>
+          </span>
+        </div>
+
+        <!-- Airline and Departure -->
+
+        <div class="flex flex-col sm:flex-row gap-2 mb-5">
+          <span class="flex flex-col w-full">
+            <label class="mb-2 text-lg font-medium traking-wide" for="">Airline</label>
+            <select id="airline" class="w-full p-2 text-lg rounded-lg border">
+              <option value="" selected hidden>Please Select</option>
+              <option value="Centrip Airlines">Centrip Airlines</option>
+              <option value="Air Canada">Air Canada</option>
+              <option value="Delta Airlines">Delta Airlines</option>
+              <option value="British Airways">British Airways</option>
+              <option value="Emirates Airlines">Emirates Airlines</option>
+            </select>
+            <span id="airlineError" class="text-sm text-red-500 hidden"></span>
+          </span>
+          <span class="flex flex-col w-full">
+            <label class="mb-2 text-lg font-medium traking-wide" for="">Departure</label>
+            <input id="departureDate" class="w-full p-2 text-lg rounded-lg border h-[47px]" type="date" />
+            <span class="text-xs mt-2">Date</span>
+            <span id="departureDateError" class="text-sm text-red-500 hidden"></span>
+          </span>
+        </div>
+
+        <!-- Return date and Number of adults -->
+
+        <div class="flex flex-col sm:flex-row gap-2 mb-5">
+          <span class="flex flex-col w-full">
+            <label class="mb-2 text-lg font-medium traking-wide" for="">Return</label>
+            <input id="returnDate" class="w-full p-2 text-lg rounded-lg border h-[47px]" type="date" />
+            <span class="text-xs mt-2">Date</span>
+            <span id="returnDateError" class="text-sm text-red-500 hidden"></span>
+          </span>
+          <span class="flex flex-col w-full">
+            <label class="mb-2 text-lg font-medium traking-wide" for="">Adults (+16)</label>
+            <input id="adultsCount" class="w-full p-2 text-lg rounded-lg border h-[47px]" type="number" placeholder="ex: 2" min="1" />
+            <span id="adultsCountError" class="text-sm text-red-500 hidden"></span>
+          </span>
+        </div>
+
+        <!-- Submit and Clear -->
+
+        <div class="flex flex-col sm:flex-row gap-2 mt-10">
+          <button
+            type="submit"
+            class="bg-blue-500 text-white py-2 rounded-lg w-full cursor-pointer text-xl hover:bg-blue-700 duration-300"
+            id="review-btn"
+          >
+            Review
+          </button>
+        </div>
+
+        <!-- end of form -->
+      </form>
+    </section>
+    <script src="reservation.js"></script>
+  </body>
+</html>
