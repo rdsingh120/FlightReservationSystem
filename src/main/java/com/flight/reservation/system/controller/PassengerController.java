@@ -39,7 +39,7 @@ public class PassengerController {
 	    
 	    if(passenger.getNationality() == null) return "redirect:/complete-profile/" + passenger.getPassenger_id();
 	    
-	    return "Dashboard";	    	
+	    return "redirect:/profile/" + passenger.getPassenger_id();	    	
 	}
 	
 	@PostMapping("/complete-profile/{id}")
@@ -60,7 +60,8 @@ public class PassengerController {
 		
 		Optional<Passenger> passengerOpt = passengerRepository.findById(id);
 	    
-	    if(passengerOpt.isPresent()) {
+	    if(!passengerOpt.isPresent()) {};
+	    
 	    	Passenger passenger = passengerOpt.get();
 	    	passenger.setNationality(nationality);
 	    	passenger.setPassportNumber(passportNumber);
@@ -75,10 +76,8 @@ public class PassengerController {
 	    	passenger.setCountry(country);
 	    	
 	    	passengerRepository.save(passenger);
-	    	
-	    };
 		
-		return passengerOpt.get() + "";
+		return "profile/" + passenger.getPassenger_id();
 	}
 	
 }
