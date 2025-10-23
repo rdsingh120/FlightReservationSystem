@@ -1,5 +1,8 @@
-const nameInput = document.querySelector("#name");
-const nameInputError = document.querySelector("#name-error");
+const firstNameInput = document.querySelector("#first-name");
+const firstNameInputError = document.querySelector("#first-name-error");
+
+const lastNameInput = document.querySelector("#last-name");
+const lastNameInputError = document.querySelector("#last-name-error");
 
 const emailInput = document.querySelector("#email");
 const emailInputError = document.querySelector("#email-error");
@@ -51,7 +54,8 @@ const passwordConfirmation = () => {
   return true;
 };
 
-removeError(nameInput, nameInputError);
+removeError(firstNameInput, firstNameInputError);
+removeError(lastNameInput, lastNameInputError);
 removeError(emailInput, emailInputError);
 removeError(passwordInput, passwordInputError);
 removeError(confirmPasswordInput, confirmPasswordInputError);
@@ -66,7 +70,8 @@ signUpBtn.addEventListener("click", (e) => {
   var isValid = true;
   if (!emailValidation()) isValid = false;
   if (!passwordConfirmation()) isValid = false;
-  if (setError(nameInput, nameInputError, "Name is required")) isValid = false;
+  if (setError(firstNameInput, firstNameInputError, "First name is required")) isValid = false;
+  if (setError(lastNameInput, lastNameInputError, "Last name is required")) isValid = false;
   if (setError(emailInput, emailInputError, "Email is required")) isValid = false;
   if (setError(passwordInput, passwordInputError, "Password is required")) isValid = false;
   if (setError(confirmPasswordInput, confirmPasswordInputError, "Confirm password is required")) isValid = false;
