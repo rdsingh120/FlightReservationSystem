@@ -39,10 +39,20 @@ public class ViewController {
 	    if(passengerOpt.isPresent()) {
 	    	Passenger passenger = passengerOpt.get();
 	    	model.addAttribute("passenger", passenger);
-	    };
-	    
-	    
-		
+	    };		
 		return "complete-profile";
 	}
+	
+	@GetMapping("/profile/{id}")
+	public String profile(@PathVariable Long id, Model model) {
+		Optional<Passenger> passengerOpt = passengerRepository.findById(id);
+	    
+	    if(passengerOpt.isPresent()) {
+	    	Passenger passenger = passengerOpt.get();
+	    	model.addAttribute("passenger", passenger);
+	    };		
+		return "profile";
+	}
+	
+	
 }
