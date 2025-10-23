@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Complete Profile</title>
+  </head>
+  <body>
+    <div class="h-[80px] w-full bg-blue-500 flex justify-between items-center px-5 lg:ps-20 lg:pe-49">
+      <h1 class="text-xl md:text-2xl lg:text-4xl text-white">Air Atlantic</h1>
+      <div class="flex justify-evenly gap-8 lg:gap-15">
+        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Home</a>
+        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Sign Up</a>
+      </div>
+    </div>
+    <div class="bg-[#000000ab] bg-[url('hero.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-10">
+      <form id="complete-profile-form" class="max-w-[800px] mx-2 sm:mx-auto p-5 rounded-lg bg-white">
+        <div class="flex flex-col items-center gap-1 mt-6 mb-3 px-5">
+          <h1 class="text-4xl mb-3">Complete Profile</h1>
+          <h3 class="text-lg">Please complete your profile to continue</h3>
+        </div>
+
+        <!-- Nationality/Passport-Number -->
+
+        <div class="flex flex-col sm:flex-row gap-5 sm:gap-1 mb-3 px-5 w-full">
+          <div class="flex flex-col gap-1 w-full">
+            <label for="nationality" class="text-lg">Nationality</label>
+            <select id="nationality" name="nationality" class="w-full p-2 text-lg rounded-lg border">
+              <option value="" selected hidden>Please Select</option>
+              <option value="Canada">Canada</option>
+              <option value="United States of America">United States of America</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Germany">Germany</option>
+            </select>
+            <span id="nationality-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+
+          <div class="flex flex-col gap-1 w-full">
+            <label for="passport-number" class="text-lg">Passport Number</label>
+            <input name="passport-number" type="text" class="p-2 text-lg rounded-lg border w-full" id="passport-number" />
+            <span id="passport-number-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+        </div>
+
+        <!-- Issue/Expiry Date -->
+
+        <div class="flex flex-col sm:flex-row gap-5 sm:gap-1 mb-3 px-5 w-full">
+          <div class="flex flex-col gap-1 w-full">
+            <label for="issue-date" class="text-lg">Issue Date</label>
+            <input name="issue-date" type="date" class="p-2 text-lg rounded-lg border w-full" id="issue-date" />
+            <span id="issue-date-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <label for="expiry-date" class="text-lg">Expiry Date</label>
+            <input name="expiry-date" type="date" class="p-2 text-lg rounded-lg border w-full" id="expiry-date" />
+            <span id="expiry-date-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+        </div>
+
+        <!-- Phone Number -->
+
+        <div class="flex flex-col gap-1 w-full mb-3 px-5">
+          <label for="phone-number" class="text-lg">Phone Number</label>
+          <input name="phone-number" type="text" class="p-2 text-lg rounded-lg border w-full" id="phone-number" />
+          <span id="phone-number-error" class="text-sm text-red-500 hidden"></span>
+        </div>
+
+        <!-- Address -->
+        <div class="flex flex-col gap-1 w-full mb-3 px-5">
+          <label for="street-address" class="text-lg">Street Address</label>
+          <input name="street-address" type="text" class="p-2 text-lg rounded-lg border w-full" id="street-address" />
+          <span id="street-address-error" class="text-sm text-red-500 hidden"></span>
+        </div>
+
+        <div class="flex flex-col gap-1 w-full mb-3 px-5">
+          <label for="street-address-line-2" class="text-lg">Street Address Line 2</label>
+          <input name="street-address-line-2" type="text" class="p-2 text-lg rounded-lg border w-full" id="street-address-line-2" />
+          <span id="street-address-line-2-error" class="text-sm text-red-500 hidden"></span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-5 sm:gap-1 mb-3 px-5 w-full">
+          <div class="flex flex-col gap-1 w-full">
+            <label for="city" class="text-lg">City</label>
+            <input name="city" type="text" class="p-2 text-lg rounded-lg border w-full" id="city" />
+            <span id="city-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+
+          <div class="flex flex-col gap-1 w-full">
+            <label for="province" class="text-lg">Province/State</label>
+            <input name="province" type="text" class="p-2 text-lg rounded-lg border w-full" id="province" />
+            <span id="province-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-5 sm:gap-1 mb-3 px-5 w-full">
+          <div class="flex flex-col gap-1 w-full">
+            <label for="postal-code" class="text-lg">Postal/Zip Code</label>
+            <input name="postal-code" type="text" class="p-2 text-lg rounded-lg border w-full" id="postal-code" />
+            <span id="postal-code-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+
+          <div class="flex flex-col gap-1 w-full">
+            <label for="country" class="text-lg">Country</label>
+            <select id="country" name="country" class="w-full p-2 text-lg rounded-lg border">
+              <option value="" selected hidden>Please Select</option>
+              <option value="Canada">Canada</option>
+              <option value="United States of America">United States of America</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Germany">Germany</option>
+            </select>
+            <span id="country-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+        </div>
+
+        <div class="flex flex-col my-6 gap-1 px-5">
+          <button type="submit" id="save-changes-btn" class="p-2 text-lg rounded-lg border bg-blue-500 text-white font-medium cursor-pointer">
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+    <script src="complete-profile.js"></script>
+  </body>
+</html>
