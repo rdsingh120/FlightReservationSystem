@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="h-[80px] w-full bg-blue-500 flex justify-between items-center px-5">
+      <h1 class="text-xl md:text-2xl lg:text-4xl text-white lg:ps-20">Air Atlantic</h1>
+      <div class="flex justify-evenly items-center gap-8 lg:gap-15">
+        <div class="lg:me-49 "> </div>
+        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Home</a>
+        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Home</a>
+       
+        <div class="flex items-center gap-2">
+        <img class="rounded-full" width="40px" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" alt="" />
+        <h1 class="md:text-lg lg:text-xl text-white" th:text="${passenger.firstName + ' ' + passenger.lastName}"></h1>
+      </div>
+      </div>
+    </div>
+
+    <section class="bg-[#000000ab] bg-[url('hero.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-5">
+      <div class="max-w-[800px] mx-auto bg-white rounded-xl p-5">
+        <div class="flex gap-2 items-center justify-center w-full rounded-lg">
+          <img width="50" src="caution.png" alt="" />
+          <h1 class="text-xl lg:text-4xl font-semibold">Profile</h1>
+        </div>
+
+
+        <!-- Name -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Full Name:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${passenger.firstName + ' ' + passenger.lastName}">Ripudaman Singh</h1>
+        </div>
+
+        <!-- Nationality -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Nationality:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${passenger.nationality}">Canada</h1>
+        </div>
+
+        <!-- Passport number -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Passport Number:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${passenger.passportNumber}">PGH50745N</h1>
+        </div>
+
+        <!-- Issue date -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Issue Date:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${passenger.issueDate}">2025-01-01</h1>
+        </div>
+
+        <!-- Expiry date -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Expiry Date:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${passenger.expiryDate}">2025-01-01</h1>
+        </div>
+
+        <!-- Email -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Email:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${passenger.email}">example@example.com</h1>
+        </div>
+
+        <!-- Phone number -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Phone Number:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${passenger.phonenumber}">9999999999</h1>
+        </div>
+
+        <!-- Address -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Address:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" 
+          th:text="${passenger.streetAddress + ' ' +
+          (passenger.streetAddressLine2 ?: '') + ' ' +
+          passenger.city + ' ' +
+          passenger.province + ' ' +
+          passenger.postalCode + ' ' +
+          passenger.country}">123 Main Street Toronto Ontario M2W E4R Canada</h1>
+        </div>
+
+        <div class="mt-4 flex gap-5">
+          <a class="w-full text-center bg-gray-500 text-white py-2 px-4 rounded-lg cursor-pointer text-xl hover:bg-gray-700 duration-300">Update Profile</a>
+          <a class="w-full text-center bg-blue-500 text-white py-2 px-4 rounded-lg cursor-pointer text-xl hover:bg-blue-700 duration-300">Book Now</a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
