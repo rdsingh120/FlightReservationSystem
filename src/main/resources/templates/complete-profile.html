@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,15 +7,20 @@
     <title>Complete Profile</title>
   </head>
   <body>
-    <div class="h-[80px] w-full bg-blue-500 flex justify-between items-center px-5 lg:ps-20 lg:pe-49">
-      <h1 class="text-xl md:text-2xl lg:text-4xl text-white">Air Atlantic</h1>
-      <div class="flex justify-evenly gap-8 lg:gap-15">
+    <div class="h-[80px] w-full bg-blue-500 flex justify-between items-center px-5">
+      <h1 class="text-xl md:text-2xl lg:text-4xl text-white lg:ps-20">Air Atlantic</h1>
+      <div class="flex justify-evenly items-center gap-8 lg:gap-15">
+        <div class="lg:me-49"></div>
         <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Home</a>
-        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Sign Up</a>
+        <div class="flex items-center gap-2">
+        <img class="rounded-full" width="40px" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" alt="" />
+        <h1 class="md:text-lg lg:text-xl text-white" th:text="${passenger.firstName}"></h1>
+      </div>
       </div>
     </div>
-    <div class="bg-[#000000ab] bg-[url('hero.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-10">
-      <form id="complete-profile-form" class="max-w-[800px] mx-2 sm:mx-auto p-5 rounded-lg bg-white">
+    
+    <div class="bg-[#000000ab] bg-[url('../images/complete-profile-bg.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-10">
+      <form th:action="@{/complete-profile/{id}(id=${passenger.passenger_id})}" method="post" id="complete-profile-form" class="max-w-[800px] mx-2 sm:mx-auto p-5 rounded-lg bg-white">
         <div class="flex flex-col items-center gap-1 mt-6 mb-3 px-5">
           <h1 class="text-4xl mb-3">Complete Profile</h1>
           <h3 class="text-lg">Please complete your profile to continue</h3>
@@ -26,7 +31,7 @@
         <div class="flex flex-col sm:flex-row gap-5 sm:gap-1 mb-3 px-5 w-full">
           <div class="flex flex-col gap-1 w-full">
             <label for="nationality" class="text-lg">Nationality</label>
-            <select id="nationality" name="nationality" class="w-full p-2 text-lg rounded-lg border">
+            <select id="nationality" name="nationality" class="h-[48.96px] w-full p-2 text-lg rounded-lg border">
               <option value="" selected hidden>Please Select</option>
               <option value="Canada">Canada</option>
               <option value="United States of America">United States of America</option>
@@ -103,7 +108,7 @@
 
           <div class="flex flex-col gap-1 w-full">
             <label for="country" class="text-lg">Country</label>
-            <select id="country" name="country" class="w-full p-2 text-lg rounded-lg border">
+            <select id="country" name="country" class="h-[48.96px] w-full p-2 text-lg rounded-lg border">
               <option value="" selected hidden>Please Select</option>
               <option value="Canada">Canada</option>
               <option value="United States of America">United States of America</option>
