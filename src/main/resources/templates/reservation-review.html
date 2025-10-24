@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="h-[80px] w-full bg-blue-500 flex justify-between items-center px-5 lg:ps-20 lg:pe-49">
+      <h1 class="text-xl md:text-2xl lg:text-4xl text-white">Air Atlantic</h1>
+      <div class="flex justify-evenly gap-8 lg:gap-15">
+        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Profile</a>
+        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Reservations</a>
+      </div>
+    </div>
+
+    <section class="bg-[#000000ab] bg-[url('../images/review-bg.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-5">
+      <form
+      	th:action="@{/checkout}"
+        method="post" class="max-w-[800px] mx-auto bg-white rounded-xl p-5">
+      
+        <div class="flex gap-2 items-center justify-center w-full rounded-lg">
+          <img width="50" src="../images/caution.png" alt="" />
+          <h1 class="text-xl lg:text-4xl font-semibold">Please review it carefully</h1>
+        </div>
+       
+  		<input type="hidden" th:name="passengerId" th:value="${passenger.passenger_id}" />
+  		<input type="hidden" th:name="flightId" th:value="${flight.id}" />
+  		<input type="hidden" th:name="adultsCount" th:value="${adultsCount}" />
+  		<input type="hidden" th:name="departureDate" th:value="${departureDate}" />
+  		<input type="hidden" th:name="totalPrice" th:value="${adultsCount * flight.price}" />
+
+        <h1 class="mt-5 text-lg lg:text-2xl font-semibold text-blue-800">Traveler details</h1>
+
+        <!-- Name -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Full Name:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${passenger.firstName + ' ' + passenger.lastName}">Ripudaman Singh</h1>
+        </div>
+
+        <!-- Nationality -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Nationality:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${passenger.nationality}">Canada</h1>
+        </div>
+
+        <!-- Passport number -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Passport Number:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${passenger.passportNumber}">PGH50745N</h1>
+        </div>
+
+        <!-- Issue date -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Issue Date:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${passenger.issueDate}">2025-01-01</h1>
+        </div>
+
+        <!-- Expiry date -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Expiry Date:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${passenger.expiryDate}">2025-01-01</h1>
+        </div>
+
+        <!-- Email -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Email:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${passenger.email}">example@example.com</h1>
+        </div>
+
+        <!-- Phone number -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Phone Number:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${passenger.phonenumber}">9999999999</h1>
+        </div>
+
+        <!-- Address -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Address:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" 
+          th:text="${passenger.streetAddress + ' ' +
+          (passenger.streetAddressLine2 ?: '') + ' ' +
+          passenger.city + ' ' +
+          passenger.province + ' ' +
+          passenger.postalCode + ' ' +
+          passenger.country}">123 Main Street Toronto Ontario M2W E4R Canada</h1>
+        </div>
+
+        <!-------------------------Trip details------------------------->
+        <hr class="my-2" />
+
+        <h1 class="text-lg lg:text-2xl font-semibold text-blue-800">Trip details</h1>
+
+        <!-- From -->
+
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">From:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${flight.origin}">Toronto</h1>
+        </div>
+
+        <!-- To -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">To:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${flight.destination}">Paris</h1>
+        </div>
+
+        <!-- Airline -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Airline:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${flight.airlineName}">Air Canada</h1>
+        </div>
+
+        <!-- Departure -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Departure date:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${departureDate}">2025-01-01</h1>
+        </div>
+
+        <!-- Time -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Departure Time:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${flight.departureTime}"></h1>
+        </div>
+        
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Arrival Time:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${flight.arrivalTime}"></h1>
+        </div>
+
+        <!-- Adults -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Adults:</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${adultsCount}">2</h1>
+        </div>
+
+        <!-- Price -->
+
+        <div class="mt-2 flex gap-2 justify-left">
+          <h1 class="lg:text-lg font-semibold">Price</h1>
+          <h1 class="text-lg lg:text-xl font-bold text-red-500" th:text="${'$' + (adultsCount * flight.price)}">$3900</h1>
+        </div>
+
+        <div class="mt-4 flex gap-5">
+          <a th:href="@{/search-flight/{id}(id=${passenger.passenger_id})}" class="w-full text-center bg-gray-500 text-white py-2 px-4 rounded-lg cursor-pointer text-xl hover:bg-gray-700 duration-300">Discard</a>
+          <button type="submit" class="w-full text-center bg-blue-500 text-white py-2 px-4 rounded-lg cursor-pointer text-xl hover:bg-blue-700 duration-300">Checkout</button>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>
