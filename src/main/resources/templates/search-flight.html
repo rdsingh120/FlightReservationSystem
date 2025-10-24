@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Search flights</title>
+  </head>
+  <body>
+    <div class="h-[80px] w-full bg-blue-500 flex justify-between items-center px-5 lg:ps-20 lg:pe-49">
+      <h1 class="text-xl md:text-2xl lg:text-4xl text-white">Air Atlantic</h1>
+      <div class="flex justify-evenly gap-8 lg:gap-15">
+        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Profile</a>
+        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Reservations</a>
+      </div>
+    </div>
+
+    <!-- Search flights -->
+
+    <section class="bg-[#000000ab] bg-[url('../images/reservation-bg.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-5">
+      <form
+        id="search-flight-form"
+        th:action="@{/search-flight/{id}(id=${passenger.passenger_id})}"
+        method="post"
+        class="w-full rounded-xl p-5 lg:p-10 max-w-[700px] mx-auto bg-white"
+      >
+        <div class="mb-5">
+          <h1 class="text-4xl mb-3 font-semibold text-center">Search flights</h1>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-2">
+          <div class="flex flex-col w-full">
+            <label class="mb-2 text-lg font-medium traking-wide" for="departureCity">From</label>
+            <select id="departureCity" name="departureCity" class="w-full p-2 text-lg rounded-lg border">
+              <option value="" selected disabled hidden>Please Select</option>
+              <option value="Toronto">Toronto</option>
+              <option value="Paris">Paris</option>
+              <option value="New York">New York</option>
+              <option value="London">London</option>
+              <option value="Amsterdam">Amsterdam</option>
+            </select>
+            <span id="departureCityError" class="text-sm text-red-500 hidden"></span>
+            <span class="sameCityError text-sm text-red-500 hidden"></span>
+          </div>
+          <span class="flex flex-col w-full">
+            <label class="mb-2 text-lg font-medium traking-wide" for="arrivalCity">To</label>
+            <select id="arrivalCity" name="arrivalCity" class="w-full p-2 text-lg rounded-lg border">
+              <option value="" selected hidden>Please Select</option>
+              <option value="Toronto">Toronto</option>
+              <option value="Paris">Paris</option>
+              <option value="New York">New York</option>
+              <option value="London">London</option>
+              <option value="Amsterdam">Amsterdam</option>
+            </select>
+            <span id="arrivalCityError" class="text-sm text-red-500 hidden"></span>
+            <span class="sameCityError text-sm text-red-500 hidden"></span>
+          </span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-2 mt-5">
+          <button
+            type="submit"
+            class="bg-blue-500 text-white py-2 rounded-lg w-full cursor-pointer text-xl hover:bg-blue-700 duration-300"
+            id="get-results-btn"
+          >
+            Get Results
+          </button>
+        </div>
+      </form>
+
+      <!-- Book flights -->
+
+      <form id="reservation-form" 
+      th:action="@{/review-reservation/{id}(id=${passenger.passenger_id})}"
+        method="post" th:if="${flights != null and !flights.isEmpty()}" class="w-full rounded-xl p-5 lg:p-10 max-w-[700px] mx-auto bg-white mt-5">
+        <div class="flex flex-col mb-5">
+          <label class="mb-2 text-lg font-medium traking-wide" for="flight">Available Flights</label>
+          <select id="flight" name="flight" class="w-full p-2 text-lg rounded-lg border">
+            <option value="" selected hidden>Please Select</option>
+            <option
+              th:each="flight : ${flights}"
+              th:value="${flight.id}"
+              th:text="${flight.airlineName + ' | ' + flight.origin + ' → ' + flight.destination + ' | $' + flight.price}"
+            >
+              AirCanada | Toronto → London | $650
+            </option>
+          </select>
+          <span id="flight-error" class="text-sm text-red-500 hidden"></span>
+        </div>
+        <!-- Departure and Adults -->
+
+        <div class="flex flex-col sm:flex-row gap-2 mb-5">
+          <div class="flex flex-col w-full">
+            <label class="mb-2 text-lg font-medium traking-wide" for="">Departure date</label>
+            <input id="departureDate" name="departureDate" class="w-full p-2 text-lg rounded-lg border" type="date" />
+            <span id="departureDateError" class="text-sm text-red-500 mt-2 hidden"></span>
+          </div>
+          <div class="flex flex-col w-full">
+            <label class="mb-2 text-lg font-medium traking-wide" for="">Adults (+16)</label>
+            <input id="adultsCount" name="adultsCount" class="w-full p-2 text-lg rounded-lg border" type="number" placeholder="ex: 2" min="1" />
+            <span id="adultsCountError" class="text-sm text-red-500 mt-2 hidden"></span>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-2 mt-10">
+          <button
+            type="submit"
+            class="bg-blue-500 text-white py-2 rounded-lg w-full cursor-pointer text-xl hover:bg-blue-700 duration-300"
+            id="review-btn"
+          >
+            Review Reservation
+          </button>
+        </div>
+      </form>
+
+      <!-- If no flights -->
+      <div
+        th:if="${flights != null and flights.isEmpty()}"
+        class="w-full rounded-xl p-5 lg:p-10 max-w-[700px] mx-auto bg-white mt-5 text-2xl text-red-500"
+      >
+        No flights Available
+      </div>
+    </section>
+    <script src="../js/search-flight.js"></script>
+  </body>
+</html>
