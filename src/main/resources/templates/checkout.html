@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Checkout</title>
+  </head>
+  <body>
+    <div class="h-[80px] w-full bg-blue-500 flex justify-between items-center px-5 lg:ps-20 lg:pe-49">
+      <h1 class="text-xl md:text-2xl lg:text-4xl text-white">Air Atlantic</h1>
+      <div class="flex justify-evenly gap-8 lg:gap-15">
+        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Profile</a>
+        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Reservations</a>
+      </div>
+    </div>
+    <div class="bg-[#000000ab] bg-[url('../images/checkout-bg.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-10">
+      <form id="sign-in-form" class="max-w-[600px] mx-2 sm:mx-auto p-5 rounded-lg bg-white">
+        <div class="flex flex-col items-center gap-1 mt-6 mb-3 px-5">
+          <h1 class="text-4xl mb-3">Checkout</h1>
+          <h3 class="text-lg">Enter your payment information</h3>
+        </div>
+        <div class="flex flex-col gap-1 mb-3 px-5">
+          <h1 class="text-lg">Card Type:</h1>
+          <div>
+            <input name="card-type" type="radio" id="visa-card" value="VISA" />
+            <label for="visa-card">VISA</label>
+          </div>
+          <div>
+            <input name="card-type" type="radio" id="master-card" value="Master Card" />
+            <label for="master-card">Master Card</label>
+          </div>
+          <div>
+            <input name="card-type" type="radio" id="amex-card" value="AMEX" />
+            <label for="amex-card">AMEX</label>
+          </div>
+          <span id="card-type-error" class="text-sm text-red-500 hidden"></span>
+        </div>
+        <div class="flex flex-col gap-1 mb-3 px-5">
+          <label for="card-holder" class="text-lg">Card Holder</label>
+          <input name="card-holder" type="text" class="p-2 text-lg rounded-lg border" id="card-holder" />
+          <span id="card-holder-error" class="text-sm text-red-500 hidden"></span>
+        </div>
+        <div class="flex flex-col gap-1 mb-3 px-5">
+          <label for="card-number" class="text-lg">Card Number</label>
+          <input name="card-number" type="number" class="p-2 text-lg rounded-lg border" id="card-number" />
+          <span id="card-number-error" class="text-sm text-red-500 hidden"></span>
+        </div>
+        <div class="flex justify-between gap-2 mb-6 px-5">
+          <div class="flex flex-col gap-1 w-full">
+            <label for="expiry-date" class="text-lg">Expiry Date</label>
+            <input name="expiry-date" type="date" class="p-2 text-lg rounded-lg border" id="expiry-date" />
+            <span id="expiry-date-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <label for="cvc-code" class="text-lg">CVC Code</label>
+            <input name="cvc-code" type="number" class="p-2 text-lg rounded-lg border" id="cvc-code" />
+            <span id="cvc-code-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+        </div>
+        <div class="flex flex-col mb-6 gap-1 px-5">
+          <button
+            type="submit"
+            id="proceed-btn"
+            class="p-2 text-lg rounded-lg border bg-blue-500 text-white font-medium cursor-pointer"
+          >
+            Proceed
+          </button>
+        </div>
+      </form>
+    </div>
+    <script src="../js/checkout.js"></script>
+  </body>
+</html>
