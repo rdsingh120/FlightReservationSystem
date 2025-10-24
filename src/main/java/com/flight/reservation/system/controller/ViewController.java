@@ -18,22 +18,22 @@ public class ViewController {
 	PassengerRepository passengerRepository;
 	
 	@GetMapping("/")
-	public String home() {
+	public String homePage() {
 		return "index";
 	}
 	
 	@GetMapping("/sign-up")
-	public String signUp() {
+	public String signUpPage() {
 		return "sign-up";
 	}
 	
 	@GetMapping("/sign-in")
-	public String signIn() {
+	public String signInPage() {
 		return "sign-in";
 	}
 	
 	@GetMapping("/complete-profile/{id}")
-	public String completeProfile(@PathVariable Long id, Model model) {
+	public String completeProfilePage(@PathVariable Long id, Model model) {
 		Optional<Passenger> passengerOpt = passengerRepository.findById(id);
 	    
 	    if(passengerOpt.isPresent()) {
@@ -44,7 +44,7 @@ public class ViewController {
 	}
 	
 	@GetMapping("/profile/{id}")
-	public String profile(@PathVariable Long id, Model model) {
+	public String profilePage(@PathVariable Long id, Model model) {
 		Optional<Passenger> passengerOpt = passengerRepository.findById(id);
 	    
 	    if(passengerOpt.isPresent()) {
@@ -53,6 +53,37 @@ public class ViewController {
 	    };		
 		return "profile";
 	}
+	
+	@GetMapping("/search-flight/{id}")
+	public String searchFlightPage(@PathVariable Long id, Model model) {
+		Optional<Passenger> passengerOpt = passengerRepository.findById(id);
+	    
+	    if(passengerOpt.isPresent()) {
+	    	Passenger passenger = passengerOpt.get();
+	    	model.addAttribute("passenger", passenger);
+	    };		
+		return "search-flight";
+	}
+	
+	@GetMapping("review-reservation/{id}")
+	public String redirectPage(@PathVariable Long id) {
+		return "redirect:/search-flight/" + id;
+	}
+	
+	
+	@GetMapping("/checkout/{id}")
+	public String checkOutPage(@PathVariable Long id, Model model) {
+		Optional<Passenger> passengerOpt = passengerRepository.findById(id);
+	    
+	    if(passengerOpt.isPresent()) {
+	    	Passenger passenger = passengerOpt.get();
+	    	model.addAttribute("passenger", passenger);
+	    };		
+		return "checkout";
+	}
+	
+	
+	
 	
 	
 }
