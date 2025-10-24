@@ -1,6 +1,5 @@
 package com.flight.reservation.system.controller;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.flight.reservation.system.model.Passenger;
 import com.flight.reservation.system.repository.PassengerRepository;
@@ -21,14 +19,18 @@ public class PassengerController {
 	private PassengerRepository passengerRepository;
 	
 	@PostMapping("/sign-up")
-	public String createAccount(@RequestParam("first-name") String firstname, @RequestParam("last-name") String lastname, String email, String password) {
+	public String createAccount(
+			@RequestParam("first-name") String firstname, 
+			@RequestParam("last-name") String lastname, 
+			@RequestParam String email, 
+			@RequestParam String password) {
 		Passenger passenger = new Passenger(firstname, lastname, email, password);
 		passengerRepository.save(passenger);
 		return "redirect:/sign-in";
 	}
 	
 	@PostMapping("/sign-in")
-	public String login(String email, String password) {
+	public String login(@RequestParam String email, @RequestParam String password) {
 		Optional<Passenger> passengerOpt = passengerRepository.findByEmail(email);
 	    
 	    if(!passengerOpt.isPresent()) return "invalid-credentials";
@@ -43,7 +45,6 @@ public class PassengerController {
 	}
 	
 	@PostMapping("/complete-profile/{id}")
-	@ResponseBody
 	public String addProfileInformation(
 			@PathVariable Long id,
 			String nationality, 
@@ -53,10 +54,10 @@ public class PassengerController {
 			@RequestParam("phone-number") String phoneNumber,
 			@RequestParam("street-address") String streetAddress,
 			@RequestParam("street-address-line-2") String streetAddressLine2,
-			String province,
-			String city,
+			@RequestParam String province,
+			@RequestParam String city,
 			@RequestParam("postal-code") String postalCode,
-			String country) {
+			@RequestParam String country) {
 		
 		Optional<Passenger> passengerOpt = passengerRepository.findById(id);
 	    
@@ -77,7 +78,8 @@ public class PassengerController {
 	    	
 	    	passengerRepository.save(passenger);
 		
-		return "profile/" + passenger.getPassenger_id();
+		return "redirect:/profile/" + passenger.getPassenger_id();
 	}
+
 	
 }
