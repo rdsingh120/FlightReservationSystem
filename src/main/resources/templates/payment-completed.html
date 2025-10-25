@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Payment Completed</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="h-[80px] w-full bg-blue-500 flex flex-col md:flex-row justify-between items-center px-5">
+      <h1 class="text-xl md:text-2xl lg:text-4xl text-white lg:ps-20">Air Atlantic</h1>
+      <div class="flex justify-evenly items-center gap-8 lg:gap-15">
+        <a th:href="@{/search-flight/{id}(id=${passenger.passenger_id})}" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Search Flights</a>
+        <a th:href="@{/profile/{id}(id=${passenger.passenger_id})}" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Profile</a>
+        <a th:href="@{/reservations/{id}(id=${passenger.passenger_id})}" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Reservation</a>
+       
+        <div class="flex items-center gap-2">
+        <img class="rounded-full" width="40px" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" alt="" />
+        <h1 class="md:text-lg lg:text-xl text-white" th:text="${passenger.firstName + ' ' + passenger.lastName}"></h1>
+      </div>
+      </div>
+    </div>
+    
+    <div class="bg-[#000000ab] bg-[url('/images/checkout-bg.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-10">
+      <form class="max-w-[600px] mx-2 sm:mx-auto p-5 rounded-lg bg-white">
+        <h1>Payment Completed</h1>
+      </form>
+    </div>
+  </body>
+</html>
