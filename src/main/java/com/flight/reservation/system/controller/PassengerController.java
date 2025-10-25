@@ -47,7 +47,7 @@ public class PassengerController {
 	@PostMapping("/complete-profile/{id}")
 	public String addProfileInformation(
 			@PathVariable Long id,
-			String nationality, 
+			@RequestParam String nationality, 
 			@RequestParam("passport-number") String passportNumber, 
 			@RequestParam("issue-date") LocalDate issueDate,
 			@RequestParam("expiry-date") LocalDate expiryDate,
@@ -79,6 +79,52 @@ public class PassengerController {
 	    	passengerRepository.save(passenger);
 		
 		return "redirect:/profile/" + passenger.getPassenger_id();
+	}
+	
+	
+	@PostMapping("/update-profile/{id}")
+	public String updateProfileInformation(
+			@PathVariable Long id,
+			@RequestParam String firstName,
+			@RequestParam String lastName,
+			@RequestParam String email,
+			@RequestParam String password,
+			@RequestParam String nationality,
+			@RequestParam String passportNumber, 
+			@RequestParam LocalDate issueDate,
+			@RequestParam LocalDate expiryDate,
+			@RequestParam("phonenumber") String phoneNumber,
+			@RequestParam String streetAddress,
+			@RequestParam String streetAddressLine2,
+			@RequestParam String province,
+			@RequestParam String city,
+			@RequestParam String postalCode,
+			@RequestParam String country) {
+		
+		Optional<Passenger> passengerOpt = passengerRepository.findById(id);
+	    
+	    if(!passengerOpt.isPresent()) {};
+	    
+	    	Passenger passenger = passengerOpt.get();
+	    	passenger.setFirstName(firstName);
+	    	passenger.setLastName(lastName);
+	    	passenger.setEmail(email);
+	    	passenger.setPassword(password);
+	    	passenger.setNationality(nationality);
+	    	passenger.setPassportNumber(passportNumber);
+	    	passenger.setIssueDate(issueDate);
+	    	passenger.setExpiryDate(expiryDate);
+	    	passenger.setPhonenumber(phoneNumber);
+	    	passenger.setStreetAddress(streetAddress);
+	    	passenger.setStreetAddressLine2(streetAddressLine2);
+	    	passenger.setCity(city);
+	    	passenger.setProvince(province);
+	    	passenger.setPostalCode(postalCode);
+	    	passenger.setCountry(country);
+	    	
+	    	passengerRepository.save(passenger);
+		
+		return "redirect:/profile/" + id;
 	}
 
 	
