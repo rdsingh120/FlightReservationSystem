@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Update Profile</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="h-[80px] w-full bg-blue-500 flex flex-col md:flex-row justify-between items-center px-5">
+      <h1 class="text-xl md:text-2xl lg:text-4xl text-white lg:ps-20">Air Atlantic</h1>
+      <div class="flex justify-evenly items-center gap-8 lg:gap-15">
+        <a th:href="@{/search-flight/{id}(id=${passenger.passenger_id})}" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Search Flights</a>
+        <a th:href="@{/profile/{id}(id=${passenger.passenger_id})}" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Profile</a>
+        <a th:href="@{/reservations/{id}(id=${passenger.passenger_id})}" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Reservation</a>
+       
+        <div class="flex items-center gap-2">
+        <img class="rounded-full" width="40px" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" alt="" />
+        <h1 class="md:text-lg lg:text-xl text-white" th:text="${passenger.firstName + ' ' + passenger.lastName}"></h1>
+      </div>
+      </div>
+    </div>
+    
+    <div class="bg-[#000000ab] bg-[url('/images/update-profile-bg.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-10">
+      <form th:action="@{/update-profile/{id}(id=${passenger.passenger_id})}" th:object="${passenger}" method="post" id="update-profile-form" class="max-w-[800px] mx-2 sm:mx-auto p-5 rounded-lg bg-white">
+        <div class="flex flex-col items-center gap-1 mt-6 mb-3 px-5">
+          <h1 class="text-4xl mb-3">Update Profile</h1>
+          <h3 class="text-lg">Please add information to update your profile</h3>
+        </div>
+
+        <!-- First/Last Name -->
+
+        <div class="flex flex-col sm:flex-row gap-5 sm:gap-1 mb-3 px-5 w-full">
+          <div class="flex flex-col gap-1 w-full">
+            <label for="first-name" class="text-lg">First Name</label>
+            <input type="text" id="first-name" name="first-name" class="w-full p-2 text-lg rounded-lg border" th:field="*{firstName}" />
+            <span id="first-name-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+
+          <div class="flex flex-col gap-1 w-full">
+            <label for="last-name" class="text-lg">Last Name</label>
+            <input type="text" id="last-name" name="last-name" class="w-full p-2 text-lg rounded-lg border" th:field="*{lastName}" />
+            <span id="last-name-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+        </div>
+
+        <!-- Email/Password -->
+
+        <div class="flex flex-col sm:flex-row gap-5 sm:gap-1 mb-3 px-5 w-full">
+          <div class="flex flex-col gap-1 w-full">
+            <label for="email" class="text-lg">Email</label>
+            <input type="email" id="email" name="email" class="w-full p-2 text-lg rounded-lg border" th:field="*{email}" />
+            <span id="email-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+
+          <div class="flex flex-col gap-1 w-full">
+            <label for="password" class="text-lg">Password</label>
+            <input type="password" id="password" name="password" class="w-full p-2 text-lg rounded-lg border" th:value="*{password}" />
+            <span id="password-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+        </div>
+
+        <!-- Nationality/Passport-Number -->
+
+        <div class="flex flex-col sm:flex-row gap-5 sm:gap-1 mb-3 px-5 w-full">
+          <div class="flex flex-col gap-1 w-full">
+            <label for="nationality" class="text-lg">Nationality</label>
+            <select id="nationality" name="nationality" class="h-[48.96px] w-full p-2 text-lg rounded-lg border" th:field="*{nationality}">
+              <option value="" selected hidden>Please Select</option>
+              <option value="Canada">Canada</option>
+              <option value="United States of America">United States of America</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Germany">Germany</option>
+            </select>
+            <span id="nationality-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+
+          <div class="flex flex-col gap-1 w-full">
+            <label for="passport-number" class="text-lg">Passport Number</label>
+            <input name="passport-number" type="text" class="p-2 text-lg rounded-lg border w-full" id="passport-number" th:field="*{passportNumber}" />
+            <span id="passport-number-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+        </div>
+
+        <!-- Issue/Expiry Date -->
+
+        <div class="flex flex-col sm:flex-row gap-5 sm:gap-1 mb-3 px-5 w-full">
+          <div class="flex flex-col gap-1 w-full">
+            <label for="issue-date" class="text-lg">Issue Date</label>
+            <input name="issue-date" type="date" class="p-2 text-lg rounded-lg border w-full" id="issue-date" th:field="*{issueDate}" />
+            <span id="issue-date-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <label for="expiry-date" class="text-lg">Expiry Date</label>
+            <input name="expiry-date" type="date" class="p-2 text-lg rounded-lg border w-full" id="expiry-date" th:field="*{expiryDate}" />
+            <span id="expiry-date-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+        </div>
+
+        <!-- Phone Number -->
+
+        <div class="flex flex-col gap-1 w-full mb-3 px-5">
+          <label for="phone-number" class="text-lg">Phone Number</label>
+          <input name="phone-number" type="text" class="p-2 text-lg rounded-lg border w-full" id="phone-number" th:field="*{phonenumber}" />
+          <span id="phone-number-error" class="text-sm text-red-500 hidden"></span>
+        </div>
+
+        <!-- Address -->
+        <div class="flex flex-col gap-1 w-full mb-3 px-5">
+          <label for="street-address" class="text-lg">Street Address</label>
+          <input name="street-address" type="text" class="p-2 text-lg rounded-lg border w-full" id="street-address" th:field="*{streetAddress}" />
+          <span id="street-address-error" class="text-sm text-red-500 hidden"></span>
+        </div>
+
+        <div class="flex flex-col gap-1 w-full mb-3 px-5">
+          <label for="street-address-line-2" class="text-lg">Street Address Line 2</label>
+          <input name="street-address-line-2" type="text" class="p-2 text-lg rounded-lg border w-full" id="street-address-line-2" th:field="*{streetAddressLine2}" />
+          <span id="street-address-line-2-error" class="text-sm text-red-500 hidden"></span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-5 sm:gap-1 mb-3 px-5 w-full">
+          <div class="flex flex-col gap-1 w-full">
+            <label for="city" class="text-lg">City</label>
+            <input name="city" type="text" class="p-2 text-lg rounded-lg border w-full" id="city" th:field="*{city}" />
+            <span id="city-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+
+          <div class="flex flex-col gap-1 w-full">
+            <label for="province" class="text-lg">Province/State</label>
+            <input name="province" type="text" class="p-2 text-lg rounded-lg border w-full" id="province" th:field="*{province}" />
+            <span id="province-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-5 sm:gap-1 mb-3 px-5 w-full">
+          <div class="flex flex-col gap-1 w-full">
+            <label for="postal-code" class="text-lg">Postal/Zip Code</label>
+            <input name="postal-code" type="text" class="p-2 text-lg rounded-lg border w-full" id="postal-code" th:field="*{postalCode}" />
+            <span id="postal-code-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+
+          <div class="flex flex-col gap-1 w-full">
+            <label for="country" class="text-lg">Country</label>
+            <select id="country" name="country" class="h-[48.96px] w-full p-2 text-lg rounded-lg border" th:field="*{country}">
+              <option value="" selected hidden>Please Select</option>
+              <option value="Canada">Canada</option>
+              <option value="United States of America">United States of America</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Germany">Germany</option>
+            </select>
+            <span id="country-error" class="text-sm text-red-500 hidden"></span>
+          </div>
+        </div>
+
+        <div class="flex flex-col my-6 gap-1 px-5">
+          <button type="submit" id="save-changes-btn" class="p-2 text-lg rounded-lg border bg-blue-500 text-white font-medium cursor-pointer">
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+    <script src="/js/update-profile.js"></script>
+  </body>
+</html>
