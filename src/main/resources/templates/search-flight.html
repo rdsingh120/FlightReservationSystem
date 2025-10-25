@@ -7,17 +7,23 @@
     <title>Search flights</title>
   </head>
   <body>
-    <div class="h-[80px] w-full bg-blue-500 flex justify-between items-center px-5 lg:ps-20 lg:pe-49">
-      <h1 class="text-xl md:text-2xl lg:text-4xl text-white">Air Atlantic</h1>
-      <div class="flex justify-evenly gap-8 lg:gap-15">
-        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Profile</a>
-        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Reservations</a>
+    <!-- Navbar -->
+    <div class="h-[80px] w-full bg-blue-500 flex flex-col md:flex-row justify-between items-center px-5">
+      <h1 class="text-xl md:text-2xl lg:text-4xl text-white lg:ps-20">Air Atlantic</h1>
+      <div class="flex justify-evenly items-center gap-8 lg:gap-15">
+        <a th:href="@{/search-flight/{id}(id=${passenger.passenger_id})}" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Search Flights</a>
+        <a th:href="@{/profile/{id}(id=${passenger.passenger_id})}" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Profile</a>
+        <a th:href="@{/reservations/{id}(id=${passenger.passenger_id})}" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Reservation</a>
+       
+        <div class="flex items-center gap-2">
+        <img class="rounded-full" width="40px" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" alt="" />
+        <h1 class="md:text-lg lg:text-xl text-white" th:text="${passenger.firstName + ' ' + passenger.lastName}"></h1>
+      </div>
       </div>
     </div>
-
     <!-- Search flights -->
 
-    <section class="bg-[#000000ab] bg-[url('../images/reservation-bg.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-5">
+    <section class="bg-[#000000ab] bg-[url('/images/reservation-bg.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-5">
       <form
         id="search-flight-form"
         th:action="@{/search-flight/{id}(id=${passenger.passenger_id})}"
@@ -75,12 +81,12 @@
         method="post" th:if="${flights != null and !flights.isEmpty()}" class="w-full rounded-xl p-5 lg:p-10 max-w-[700px] mx-auto bg-white mt-5">
         <div class="flex flex-col mb-5">
           <label class="mb-2 text-lg font-medium traking-wide" for="flight">Available Flights</label>
-          <select id="flight" name="flight" class="w-full p-2 text-lg rounded-lg border">
+          <select id="flight" name="flight" class="w-full p-2 text-xl rounded-lg border">
             <option value="" selected hidden>Please Select</option>
             <option
               th:each="flight : ${flights}"
               th:value="${flight.id}"
-              th:text="${flight.airlineName + ' | ' + flight.origin + ' → ' + flight.destination + ' | $' + flight.price}"
+              th:text="${flight.airlineName + ' | ' + flight.origin + ' → ' + flight.destination +  ' | ' + flight.departureTime + ' - ' + flight.arrivalTime +  ' | $' + flight.price}"
             >
               AirCanada | Toronto → London | $650
             </option>
