@@ -30,7 +30,7 @@ const postalCodeInputError = document.querySelector("#postal-code-error");
 const countryInput = document.querySelector("#country");
 const countryInputError = document.querySelector("#country-error");
 
-const signUpBtn = document.querySelector("#save-changes-btn");
+const saveChangesBtn = document.querySelector("#save-changes-btn");
 
 const setError = (input, inputError, errorMessage) => {
   if (!input.value) {
@@ -62,7 +62,7 @@ removeError(countryInput, countryInputError);
 issueDateInput.max = today
 expiryDateInput.min = today
 
-signUpBtn.addEventListener("click", (e) => {
+saveChangesBtn.addEventListener("click", (e) => {
   e.preventDefault();
   var isValid = true;
   if (setError(nationalityInput, nationalityInputError, "Nationality is required")) isValid = false;
