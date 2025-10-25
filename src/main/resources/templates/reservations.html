@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Search flights</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="h-[80px] w-full bg-blue-500 flex flex-col md:flex-row justify-between items-center px-5">
+      <h1 class="text-xl md:text-2xl lg:text-4xl text-white lg:ps-20">Air Atlantic</h1>
+      <div class="flex justify-evenly items-center gap-8 lg:gap-15">
+        <a
+          th:href="@{/search-flight/{id}(id=${passenger.passenger_id})}"
+          class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300"
+          >Search Flights</a
+        >
+        <a
+          th:href="@{/profile/{id}(id=${passenger.passenger_id})}"
+          class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300"
+          >Profile</a
+        >
+        <a
+          th:href="@{/reservations/{id}(id=${passenger.passenger_id})}"
+          class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300"
+          >Reservation</a
+        >
+
+        <div class="flex items-center gap-2">
+          <img class="rounded-full" width="40px" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" alt="" />
+          <h1 class="md:text-lg lg:text-xl text-white" th:text="${passenger.firstName + ' ' + passenger.lastName}"></h1>
+        </div>
+      </div>
+    </div>
+
+    <section class="bg-[#000000ab] bg-[url('/images/reservation-bg.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-5">
+      <div class="w-full rounded-xl p-5 lg:p-10 max-w-[1000px] mx-auto bg-white mt-5">
+        <div class="flex gap-2 items-center justify-center w-full rounded-lg mb-10">
+          <h1 class="text-xl lg:text-4xl font-semibold">Reservations</h1>
+        </div>
+        <div class="flex flex-col gap-5">
+          <form th:action="@{/reservations/cancel/{passengerId}/{reservationId}(passengerId=${passenger.passenger_id}, reservationId=${reservation.id})}" method="post" th:each="reservation : ${reservations}" class="border border-gray-500 rounded-lg overflow-hidden">
+            <div class="bg-gray-500 text-white text-4xl text-center py-2" th:text="${flightData[reservation.id].airlineName}"></div>
+            <div class="p-5">
+              <div class="flex justify-between items-center mb-5">
+                <div class="flex flex-col items-center">
+                  <h3 class="font-medium text-lg">From</h3>
+                  <h1 class="text-2xl text-blue-900 font-semibold" th:text="${flightData[reservation.id].origin}">New York</h1>
+                </div>
+                <div
+                  th:if="${reservation.status.name == 'Canceled'}"
+                  id="Canceled"
+                  class="status-tag flex flex-col justify-center items-center bg-red-200 font-semibold text-xl px-4 py-1 rounded-lg text-red-900 h-fit border border-red-900"
+                >
+                  Canceled
+                </div>
+                <div
+                  th:if="${reservation.status.name == 'Confirmed'}"
+                  id="Confirmed"
+                  class="status-tag flex flex-col justify-center items-center bg-green-200 font-semibold text-xl px-4 py-1 rounded-lg text-green-900 h-fit border border-green-900"
+                >
+                  Confirmed
+                </div>
+                <div
+                  th:if="${reservation.status.name == 'Pending'}"
+                  id="Pending"
+                  class="status-tag flex flex-col justify-center items-center bg-yellow-200 font-semibold text-xl px-4 py-1 rounded-lg text-yellow-900 h-fit border border-yellow-900"
+                >
+                  Pending
+                </div>
+                <div class="flex flex-col items-center">
+                  <h3 class="font-medium text-lg">To</h3>
+                  <h1 class="text-2xl text-blue-900 font-semibold" th:text="${flightData[reservation.id].destination}">Japan</h1>
+                </div>
+              </div>
+              <div class="flex justify-between mb-5">
+                <div class="flex flex-col items-center">
+                  <h3 class="font-medium text-lg">Booking Date</h3>
+                  <h1 class="text-2xl text-blue-900 font-semibold" th:text="${reservation.bookingDate}">2025-01-01</h1>
+                </div>
+                <div class="flex flex-col items-center">
+                  <h3 class="font-medium text-lg">Departure Date</h3>
+                  <h1 class="text-2xl text-blue-900 font-semibold" th:text="${reservation.departureDate}">2025-01-01</h1>
+                </div>
+                <div class="flex flex-col items-center">
+                  <h3 class="font-medium text-lg">Departure Time</h3>
+                  <h1 class="text-2xl text-blue-900 font-semibold" th:text="${flightData[reservation.id].departureTime}">09:00</h1>
+                </div>
+                <div class="flex flex-col items-center">
+                  <h3 class="font-medium text-lg">Arrival Time</h3>
+                  <h1 class="text-2xl text-blue-900 font-semibold" th:text="${flightData[reservation.id].arrivalTime}">14:00</h1>
+                </div>
+              </div>
+              <div class="mt-4 flex gap-5">
+                <button
+                  th:if="${reservation.status.name == 'Confirmed'}"
+                  th:formmethod="get"
+                  th:formaction="@{/change-departure-date/{passengerId}/{reservationId}(passengerId=${passenger.passenger_id}, reservationId=${reservation.id})}"
+                  type="submit"
+                  class="w-full text-center bg-blue-500 text-white py-2 px-4 rounded-lg cursor-pointer text-xl hover:bg-blue-700 duration-300"
+                  >Change Departure Date</button
+                >
+                <button
+                  th:if="${reservation.status.name == 'Pending'}"
+                  th:formmethod="get"
+                  th:formaction="@{/checkout/{passengerId}/{reservationId}(passengerId=${passenger.passenger_id}, reservationId=${reservation.id})}"
+                  type="submit"
+                  class="w-full text-center bg-green-500 text-white py-2 px-4 rounded-lg cursor-pointer text-xl hover:bg-green-700 duration-300"
+                  >Pay</button
+                >
+                <button
+                  th:if="${reservation.status.name != 'Canceled'}"
+                  type="submit"
+                  class="w-full text-center bg-red-500 text-white py-2 px-4 rounded-lg cursor-pointer text-xl hover:bg-red-700 duration-300"
+                  >Cancel</button
+                >
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <script src="/js/reservations.js"></script>
+  </body>
+</html>
