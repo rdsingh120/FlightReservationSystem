@@ -22,11 +22,11 @@ public class Flight {
 	private String airlineName;
 	
 	@Column(name = "departure_time")
-	@DateTimeFormat(pattern = "hh-mm-ss")
+	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime departureTime;
 	
 	@Column(name = "arrival_time")
-	@DateTimeFormat(pattern = "hh-mm-ss")
+	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime arrivalTime;
 	
 	@Column(name = "origin")
