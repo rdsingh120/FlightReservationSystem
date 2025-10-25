@@ -47,6 +47,9 @@ public class Reservation {
 	public enum BookingStatus { Pending, Confirmed, Canceled }
 
 
+	public Reservation() {
+	}
+	
 	public Reservation(long passengerId, long flightId, LocalDate bookingDate, LocalDate departureDate,
 			int passengerCount, double totalPrice, BookingStatus status) {
 		this.passengerId = passengerId;
