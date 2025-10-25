@@ -66,6 +66,6 @@ proceedBtn.addEventListener("click", (e) => {
   if (setError(cvcCodeInput, cvcCodeInputError, "CVC code is required")) isValid = false;
 
   if (isValid) {
-    document.querySelector("#sign-in-form").submit();
+    document.querySelector("#payment-form").submit();
   }
 });
