@@ -7,12 +7,14 @@
     <title>Home</title>
   </head>
   <body>
-    <div class="h-[80px] w-full bg-blue-500 flex justify-between items-center px-5">
+  
+  <!-- Navbar -->
+    <div class="h-[80px] w-full bg-blue-500 flex flex-col md:flex-row justify-between items-center px-5">
       <h1 class="text-xl md:text-2xl lg:text-4xl text-white lg:ps-20">Air Atlantic</h1>
       <div class="flex justify-evenly items-center gap-8 lg:gap-15">
-        <div class="lg:me-49 "> </div>
-        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Home</a>
-        <a href="" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Home</a>
+        <a th:href="@{/search-flight/{id}(id=${passenger.passenger_id})}" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Search Flights</a>
+        <a th:href="@{/profile/{id}(id=${passenger.passenger_id})}" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Profile</a>
+        <a th:href="@{/reservations/{id}(id=${passenger.passenger_id})}" class="md:text-lg lg:text-xl text-white border-b-2 border-transparent hover:border-white duration-300">Reservation</a>
        
         <div class="flex items-center gap-2">
         <img class="rounded-full" width="40px" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" alt="" />
@@ -20,14 +22,15 @@
       </div>
       </div>
     </div>
+    
+    
 
-    <section class="bg-[#000000ab] bg-[url('../images/complete-profile-bg.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-5">
+    <section class="bg-[#000000ab] bg-[url('/images/complete-profile-bg.jpeg')] bg-center bg-cover bg-blend-multiply min-h-[calc(100vh-80px)] py-5">
       <div class="max-w-[800px] mx-auto bg-white rounded-xl p-5">
         <div class="flex gap-2 items-center justify-center w-full rounded-lg">
           <h1 class="text-xl lg:text-4xl font-semibold">Profile</h1>
         </div>
-
-
+        
         <!-- Name -->
 
         <div class="mt-2 flex gap-2 justify-left">
@@ -91,7 +94,7 @@
         </div>
 
         <div class="mt-4 flex gap-5">
-          <a class="w-full text-center bg-gray-500 text-white py-2 px-4 rounded-lg cursor-pointer text-xl hover:bg-gray-700 duration-300">Update Profile</a>
+          <a th:href="@{/update-profile/{id}(id=${passenger.passenger_id})}" class="w-full text-center bg-gray-500 text-white py-2 px-4 rounded-lg cursor-pointer text-xl hover:bg-gray-700 duration-300">Update Profile</a>
           <a th:href="@{/search-flight/{id}(id=${passenger.passenger_id})}" class="w-full text-center bg-blue-500 text-white py-2 px-4 rounded-lg cursor-pointer text-xl hover:bg-blue-700 duration-300">Book Now</a>
         </div>
       </div>
