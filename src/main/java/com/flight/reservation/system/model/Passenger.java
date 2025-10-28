@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Passenger {
@@ -17,9 +18,11 @@ public class Passenger {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long passenger_id;
 	
+	@NotNull
 	@Column(name="firstname", nullable = false)
 	private String firstName;
 	
+	@NotNull
 	@Column(name="lastname", nullable = false)
 	private String lastName;
 	
@@ -36,11 +39,14 @@ public class Passenger {
 	@Column(name="expirydate")
 	private LocalDate expiryDate;
 	
+	@NotNull
 	@Email
 	@Column(unique = true, nullable = false)
 	private String email;
 	
+	@NotNull
 	private String password;
+	
 	private String phonenumber;
 	
 	@Column(name="streetaddress")

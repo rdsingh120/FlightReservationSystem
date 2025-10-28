@@ -11,6 +11,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Reservation {
@@ -20,26 +21,33 @@ public class Reservation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@NotNull
 	@Column(name = "passenger_id", nullable = false)
 	private long passengerId;
 	
+	@NotNull
 	@Column(name = "flight_id", nullable = false)
 	private long flightId;
 	
+	@NotNull
 	@Column(name = "booking_date", nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate bookingDate;
 	
+	@NotNull
 	@Column(name = "departure_date", nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate departureDate;
 	
+	@NotNull
 	@Column(name = "no_of_passengers", nullable = false)
 	private int passengerCount;
 	
+	@NotNull
 	@Column(name = "total_price")
 	private double totalPrice;
 	
+	@NotNull
 	@Column(name = "status")
 	@Enumerated(EnumType.STRING)
 	private BookingStatus status;

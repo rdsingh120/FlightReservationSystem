@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Flight {
@@ -18,23 +19,29 @@ public class Flight {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@NotNull
 	@Column(name = "airline_name")
 	private String airlineName;
 	
+	@NotNull
 	@Column(name = "departure_time")
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime departureTime;
 	
+	@NotNull
 	@Column(name = "arrival_time")
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime arrivalTime;
 	
+	@NotNull
 	@Column(name = "origin")
 	private String origin;
 	
+	@NotNull
 	@Column(name = "destination")
 	private String destination;
 	
+	@NotNull
 	@Column(name = "price")
 	private double price;
 	
